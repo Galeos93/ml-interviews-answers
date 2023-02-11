@@ -1,6 +1,11 @@
 > [E] What’s the motivation for RNN?
 
+The motivation for RNN is to model sequential relationships in data. RNNs receive
+inputs sequentially and have a hidden state that allows to memorize information from previous time steps that can be used for prediction at the current time step. This inductive bias makes RNNs suitable for modeling sequential relationships in data. Other models, such as a multilayer perceptron, cannot model the relation between different samples out of the box.
+
 > [E] What’s the motivation for LSTM?
+
+The motivation for LSTM is to model long-term dependencies in sequential data. It addresses one traditional problem that RNNs have, which is the so-called "vanishing gradient" problem. This problem makes the gradients on the back-propagation phase to be increasingly small as the data sequence increases. This decrease in the gradients magnitude makes the network's parameters update very small too, making overall training very unstable. LSTM's architecture solves this by introducing the concept of a "memory cell", which can store information over long periods of time. In addition, LSTMs architecture also allows selectively removing or adding new information to this "memory cell" as it receives new data.
 
 > [M] How would you do dropouts in an RNN?
 
@@ -9,7 +14,12 @@
 > [M] Language models are often referred to as unsupervised learning, but some say its mechanism isn’t that different from supervised learning. What are your thoughts?
 Word embeddings.
 
+Some language models are considered self-supervised learning models, which is a subfield of unsupervised learning. For self-supervised learning, we have a weak supervision signal that is obtained from the data, without using any explicit labels. For example, in a language learning model, the model has to predict the next word in a sentence given the previous words. This task gives the model some feedback which allows it to learn a good representation of the input data. So, both supervised and self-supervised learning models have a supervision signal, hence the comparison.
+
 > [M] Why do we need word embeddings?
+
+We need word embeddings to encode semantically meaningful information about a word in a numerical way, so it can be introduced to a machine learning model. Semantic information describes the meaning of a word. Therefore, words that have similar meanings will be closer to each other in the embedding space than those that have
+completely different meanings.
 
 > [M] What’s the difference between count-based and prediction-based word embeddings?
 
@@ -42,6 +52,9 @@ Word embeddings.
 > [M] Imagine you have to train a NER model on the text corpus A. Would you make A case-sensitive or case-insensitive?
 
 > [M] Why does removing stop words sometimes hurt a sentiment analysis model?
+
+Some stop words may convey useful information about the sentiment of a sentence.
+For example, if we wanted to train a sentiment analysis model for movie review, we may have a sentence like this: "Inception is THE movie". If we remove "THE", the emphasis is removed, and key information about the sentiment about that movie is lost.
 
 > [M] Many models use relative position embedding instead of absolute position embedding. Why is that?
 
